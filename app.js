@@ -1,6 +1,6 @@
-import * as ort from './3-ort.wasm.min.mjs';
+import * as ort from './11-ort.wasm.min.mjs';
 import {logprobs,greedy,words,align} from './core.js';
-ort.env.wasm.wasmPaths={mjs:new URL('./1-ort-wasm-simd-threaded.mjs',import.meta.url).href,wasm:new URL('./2-ort-wasm-simd-threaded.wasm',import.meta.url).href};ort.env.wasm.numThreads=1;
+ort.env.wasm.wasmPaths={mjs:new URL('./9-ort-wasm-simd-threaded.mjs',import.meta.url).href,wasm:new URL('./10-ort-wasm-simd-threaded.wasm',import.meta.url).href};ort.env.wasm.numThreads=1;
 const $=id=>document.getElementById(id);
 const HI=0.99,LO=0.25,WINDOW=30; // thresholds tuned on Husary Qalun, see report
 let sess,texts={},W=[],cursor=0,state=[],ctx,stream,proc,listening=false;
