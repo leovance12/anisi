@@ -1,0 +1,36 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نسخة تجريبية - تسميع</title>
+<style>
+:root{--g:#0f5a46;--gold:#b8923a;--bg:#f7f4ec}
+body{margin:0;background:var(--bg);font-family:system-ui,'Noto Naskh Arabic',serif;color:#1c2b26}
+header{background:var(--g);color:#fff;padding:12px 16px;font-size:18px}
+#banner{background:#fff3cd;border-bottom:2px solid var(--gold);padding:10px 16px;font-size:14px;line-height:1.5}
+main{padding:14px;max-width:720px;margin:auto}
+select,button,input{font-size:16px;padding:8px;margin:4px 0}
+button.primary{background:var(--g);color:#fff;border:0;border-radius:8px;padding:12px 18px}
+button.rec{background:#b3261e}
+#text{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:30px;line-height:2.3;margin:14px 0;padding:12px;background:#fff;border-radius:10px;min-height:120px}
+.w{display:inline-block;margin:0 5px;padding:0 6px;border-radius:6px;cursor:pointer}
+.hidden{background:#dfe6e3;color:transparent;user-select:none}
+.ok{color:#0f5a46}
+.repeat{background:#fff3cd;color:#7a5b00}
+.mark{background:#fde7e5;color:#8c1d18;border-bottom:3px solid #b3261e}
+#status{font-size:14px;color:#555;min-height:22px}
+#verdict{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--g);padding:12px;text-align:center}
+.small{font-size:13px;color:#555}
+</style></head><body>
+<header>تسميع - نسخة تجريبية للمقرئ</header>
+<div id="banner"><b>نسخة تجريبية.</b> تتحقق من الحروف فقط. لا تتحقق من الحركات ولا المدود ولا الفرق بين قالون وحفص. الصوت يبقى في هاتفك ولا يُحفظ. الكلمات المعلّمة معناها «راجع هذه الكلمة» وليست حكما بالخطأ.</div>
+<main>
+<div><label>الرواية <select id="riwaya"><option value="qal">قالون</option><option value="haf">حفص</option></select></label>
+<label>السورة <select id="sura"></select></label>
+<label>الآيات من <input id="from" type="number" min="1" value="1" style="width:60px"> إلى <input id="to" type="number" min="1" value="3" style="width:60px"></label></div>
+<div><button class="primary" id="start">ابدأ الاستماع</button> <button id="reset">إعادة</button> <button id="skip">تخطَّ كلمة</button> <label class="small">اهتزاز <input type="checkbox" id="vib"></label></div>
+<div id="status">جارٍ تحميل النموذج…</div>
+<div id="text"></div>
+<div class="small">اضغط على أي كلمة لتسجيل حكمك: صحيحة أو خاطئة. تُحفظ على هاتفك فقط.</div>
+<div><button id="export">تصدير الأحكام (ملف)</button> <span class="small" id="count"></span></div>
+<div class="small" style="margin-top:14px">اختبار بملف صوتي: <input type="file" id="file" accept="audio/*"></div>
+</main>
+<div id="verdict"><div id="vword" style="font-size:24px"></div><button class="primary" data-v="right">حكم المقرئ: القراءة صحيحة</button> <button class="primary rec" data-v="wrong">حكم المقرئ: خاطئة</button> <button data-v="close">إغلاق</button></div>
+<script type="module" src="app.js"></script></body></html>
