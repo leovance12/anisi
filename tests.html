@@ -1,0 +1,121 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الاختبارات - أنيسي</title>
+<style>
+:root{--g:#0f5a46;--gd:#093428;--gold:#b8923a;--bg:#f7f4ec}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,'Noto Naskh Arabic',serif;color:#1c2b26}
+header{background:var(--g);color:#fff;padding:14px 16px;font-size:19px;display:flex;justify-content:space-between;align-items:center}
+header a{color:#fff;font-size:14px;text-decoration:none;opacity:.85}
+main{padding:14px;max-width:720px;margin:auto}
+h2{font-size:17px;margin:22px 4px 10px;border-right:4px solid var(--gold);padding-right:8px}
+.card{display:flex;align-items:center;gap:14px;background:#fff;border-radius:20px;padding:14px 16px;margin:10px 0;box-shadow:0 2px 8px #0001;cursor:pointer;border:0;width:100%;text-align:right;font:inherit;color:inherit}
+.ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:26px;color:#fff;flex:none}
+.c1{background:linear-gradient(#d9b860,#a97e22)}.c2{background:var(--gd)}.c3{background:linear-gradient(#2d9c80,#146a54)}.c4{background:linear-gradient(#25876f,#0b4a3b)}
+.card b{display:block;font-size:19px}.card span.s{color:#666;font-size:14px}.card .ch{margin-right:auto;color:#555;font-size:22px}
+.box{background:#fff;border-radius:16px;padding:14px;margin:10px 0}
+select,input,button{font:inherit;font-size:16px;padding:8px;margin:4px 0}
+button.primary{background:var(--g);color:#fff;border:0;border-radius:10px;padding:12px 18px}
+button.ghost{background:#fff;border:1px solid var(--g);color:var(--g);border-radius:10px;padding:10px 16px}
+button.bad{background:#fde7e5;border:0;color:#8c1d18;border-radius:10px;padding:12px 18px}
+.q{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:30px;line-height:2.2;background:#fff;border-radius:16px;padding:16px;margin:10px 0}
+.hint{font-size:14px;color:#666}.ans{background:#e8f3ef;border-radius:12px;padding:12px;font-family:'Amiri',serif;font-size:26px;line-height:2.1}
+.opt{display:block;width:100%;text-align:right;background:#fff;border:2px solid #d6d2c4;border-radius:12px;padding:12px;margin:8px 0;font-family:'Amiri',serif;font-size:24px;line-height:2}
+.opt.right{border-color:var(--g);background:#e8f3ef}.opt.wrong{border-color:#b3261e;background:#fde7e5}
+.bar{height:8px;background:#e3dfd2;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;font-size:13px}
+.nav a{color:#555;text-decoration:none;text-align:center}.nav a.on{color:var(--g);font-weight:700}
+.pad{height:70px}
+</style></head><body>
+<header><span>الاختبارات</span><a href="index.html">الرجوع إلى التسميع</a></header>
+<main id="m">جارٍ التحميل…</main><div class="pad"></div>
+<div class="nav"><a href="index.html">الرئيسية</a><a class="on" href="tests.html">الاختبارات</a></div>
+<script>
+const PAGES_HAF=[[1,1],[2,1],[2,6],[2,17],[2,25],[2,30],[2,38],[2,49],[2,58],[2,62],[2,70],[2,77],[2,84],[2,89],[2,94],[2,102],[2,106],[2,113],[2,120],[2,127],[2,135],[2,142],[2,146],[2,154],[2,164],[2,170],[2,177],[2,182],[2,187],[2,191],[2,197],[2,203],[2,211],[2,216],[2,220],[2,225],[2,231],[2,234],[2,238],[2,246],[2,249],[2,253],[2,257],[2,260],[2,265],[2,270],[2,275],[2,282],[2,283],[3,1],[3,10],[3,16],[3,23],[3,30],[3,38],[3,46],[3,53],[3,62],[3,71],[3,78],[3,84],[3,92],[3,101],[3,109],[3,116],[3,122],[3,133],[3,141],[3,149],[3,154],[3,158],[3,166],[3,174],[3,181],[3,187],[3,195],[4,1],[4,7],[4,12],[4,15],[4,20],[4,24],[4,27],[4,34],[4,38],[4,45],[4,52],[4,60],[4,66],[4,75],[4,80],[4,87],[4,92],[4,95],[4,102],[4,106],[4,114],[4,122],[4,128],[4,135],[4,141],[4,148],[4,155],[4,163],[4,171],[4,176],[5,3],[5,6],[5,10],[5,14],[5,18],[5,24],[5,32],[5,37],[5,42],[5,46],[5,51],[5,58],[5,65],[5,71],[5,77],[5,83],[5,90],[5,96],[5,104],[5,109],[5,114],[6,1],[6,9],[6,19],[6,28],[6,36],[6,45],[6,53],[6,60],[6,69],[6,74],[6,82],[6,91],[6,95],[6,102],[6,111],[6,119],[6,125],[6,132],[6,138],[6,143],[6,147],[6,152],[6,158],[7,1],[7,12],[7,23],[7,31],[7,38],[7,44],[7,52],[7,58],[7,68],[7,74],[7,82],[7,88],[7,96],[7,105],[7,121],[7,131],[7,138],[7,144],[7,150],[7,156],[7,160],[7,164],[7,171],[7,179],[7,188],[7,196],[8,1],[8,9],[8,17],[8,26],[8,34],[8,41],[8,46],[8,53],[8,62],[8,70],[9,1],[9,7],[9,14],[9,21],[9,27],[9,32],[9,37],[9,41],[9,48],[9,55],[9,62],[9,69],[9,73],[9,80],[9,87],[9,94],[9,100],[9,107],[9,112],[9,118],[9,123],[10,1],[10,7],[10,15],[10,21],[10,26],[10,34],[10,43],[10,54],[10,62],[10,71],[10,79],[10,89],[10,98],[10,107],[11,6],[11,13],[11,20],[11,29],[11,38],[11,46],[11,54],[11,63],[11,72],[11,82],[11,89],[11,98],[11,109],[11,118],[12,5],[12,15],[12,23],[12,31],[12,38],[12,44],[12,53],[12,64],[12,70],[12,79],[12,87],[12,96],[12,104],[13,1],[13,6],[13,14],[13,19],[13,29],[13,35],[13,43],[14,6],[14,11],[14,19],[14,25],[14,34],[14,43],[15,1],[15,16],[15,32],[15,52],[15,71],[15,91],[16,7],[16,15],[16,27],[16,35],[16,43],[16,55],[16,65],[16,73],[16,80],[16,88],[16,94],[16,103],[16,111],[16,119],[17,1],[17,8],[17,18],[17,28],[17,39],[17,50],[17,59],[17,67],[17,76],[17,87],[17,97],[17,105],[18,5],[18,16],[18,21],[18,28],[18,35],[18,46],[18,54],[18,62],[18,75],[18,84],[18,98],[19,1],[19,12],[19,26],[19,39],[19,52],[19,65],[19,77],[19,96],[20,13],[20,38],[20,52],[20,65],[20,77],[20,88],[20,99],[20,114],[20,126],[21,1],[21,11],[21,25],[21,36],[21,45],[21,58],[21,73],[21,82],[21,91],[21,102],[22,1],[22,6],[22,16],[22,24],[22,31],[22,39],[22,47],[22,56],[22,65],[22,73],[23,1],[23,18],[23,28],[23,43],[23,60],[23,75],[23,90],[23,105],[24,1],[24,11],[24,21],[24,28],[24,32],[24,37],[24,44],[24,54],[24,59],[24,62],[25,3],[25,12],[25,21],[25,33],[25,44],[25,56],[25,68],[26,1],[26,20],[26,40],[26,61],[26,84],[26,112],[26,137],[26,160],[26,184],[26,207],[27,1],[27,14],[27,23],[27,36],[27,45],[27,56],[27,64],[27,77],[27,89],[28,6],[28,14],[28,22],[28,29],[28,36],[28,44],[28,51],[28,60],[28,71],[28,78],[28,85],[29,7],[29,15],[29,24],[29,31],[29,39],[29,46],[29,53],[29,64],[30,6],[30,16],[30,25],[30,33],[30,42],[30,51],[31,1],[31,12],[31,20],[31,29],[32,1],[32,12],[32,21],[33,1],[33,7],[33,16],[33,23],[33,31],[33,36],[33,44],[33,51],[33,55],[33,63],[34,1],[34,8],[34,15],[34,23],[34,32],[34,40],[34,49],[35,4],[35,12],[35,19],[35,31],[35,39],[35,45],[36,13],[36,28],[36,41],[36,55],[36,71],[37,1],[37,25],[37,52],[37,77],[37,103],[37,127],[37,154],[38,1],[38,17],[38,27],[38,43],[38,62],[38,84],[39,6],[39,11],[39,22],[39,32],[39,41],[39,48],[39,57],[39,68],[39,75],[40,8],[40,17],[40,26],[40,34],[40,41],[40,50],[40,59],[40,67],[40,78],[41,1],[41,12],[41,21],[41,30],[41,39],[41,47],[42,1],[42,11],[42,16],[42,23],[42,32],[42,45],[42,52],[43,11],[43,23],[43,34],[43,48],[43,61],[43,74],[44,1],[44,19],[44,40],[45,1],[45,14],[45,23],[45,33],[46,6],[46,15],[46,21],[46,29],[47,1],[47,12],[47,20],[47,30],[48,1],[48,10],[48,16],[48,24],[48,29],[49,5],[49,12],[50,1],[50,16],[50,36],[51,7],[51,31],[51,52],[52,15],[52,32],[53,1],[53,27],[53,45],[54,7],[54,28],[54,50],[55,17],[55,41],[55,68],[56,17],[56,51],[56,77],[57,4],[57,12],[57,19],[57,25],[58,1],[58,7],[58,12],[58,22],[59,4],[59,10],[59,17],[60,1],[60,6],[60,12],[61,6],[62,1],[62,9],[63,5],[64,1],[64,10],[65,1],[65,6],[66,1],[66,8],[67,1],[67,13],[67,27],[68,16],[68,43],[69,9],[69,35],[70,11],[70,40],[71,11],[72,1],[72,14],[73,1],[73,20],[74,18],[74,48],[75,20],[76,6],[76,26],[77,20],[78,1],[78,31],[79,16],[80,1],[81,1],[82,1],[83,7],[83,35],[85,1],[86,1],[87,16],[89,1],[89,24],[91,1],[92,15],[95,1],[97,1],[98,8],[100,10],[103,1],[106,1],[109,1],[112,1],[115,1]];
+const SURA=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+const LS={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
+let texts={},riwaya=LS.get('anisi_riw','haf'),PAGES_QAL=[],MUT={};
+const PAGES_FOR=()=>riwaya=='qal'&&PAGES_QAL.length?PAGES_QAL:PAGES_HAF;
+async function loadExtra(){try{if(!PAGES_QAL.length)PAGES_QAL=await (await fetch('pages_qal.json')).json()}catch(e){}try{if(!MUT[riwaya])MUT[riwaya]=await (await fetch('mut_'+riwaya+'.json')).json()}catch(e){MUT[riwaya]=[]}}
+const M=document.getElementById('m');
+const strip=s=>s.replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u08D3-\u08FF\u0640\u00A0]/g,'').replace(/[٠-٩0-9]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/\s+/g,' ').trim();
+const clean=s=>s.replace(/[\u00A0\s]*[٠-٩0-9]+\s*$/,'').trim();
+const verse=(s,a)=>clean(texts[riwaya][s][a-1]);
+const words=t=>t.split(/\s+/).filter(Boolean);
+const rnd=n=>Math.floor(Math.random()*n);
+const pick=a=>a[rnd(a.length)];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+// memorized: [{s,from,to}]
+const mem=()=>LS.get('anisi_mem',[]);
+function memVerses(){const out=[];for(const r of mem())for(let a=r.from;a<=r.to;a++)if(texts[riwaya][r.s]&&texts[riwaya][r.s][a-1])out.push([r.s,a]);return out}
+const key=(s,a)=>s+':'+a;
+const stats=()=>LS.get('anisi_stats',{});
+function record(s,a,ok){const st=stats(),k=key(s,a);st[k]=st[k]||{ok:0,bad:0};ok?st[k].ok++:st[k].bad++;LS.set('anisi_stats',st);
+ if(!ok){const m=LS.get('anisi_mistakes',{});m[k]=(m[k]||0)+1;LS.set('anisi_mistakes',m)}else{const m=LS.get('anisi_mistakes',{});if(m[k]){m[k]--;if(m[k]<=0)delete m[k];LS.set('anisi_mistakes',m)}}}
+function mistakeVerses(){const m=LS.get('anisi_mistakes',{});return Object.keys(m).map(k=>k.split(':').map(Number)).filter(([s,a])=>texts[riwaya][s]&&texts[riwaya][s][a-1])}
+// similar verses: scholarly list (Qari Idrees Al Asim, via Waqar144 dataset), mapped to the chosen riwaya
+function simGroupsFor(vs){const set=new Set(vs.map(v=>key(...v))),out=[];for(const e of (MUT[riwaya]||[])){const grp=[e.s[0],...e.m.map(x=>x[0])];if(grp.some(v=>set.has(key(...v)))&&grp.every(v=>texts[riwaya][v[0]]&&texts[riwaya][v[0]][v[1]-1]))out.push(grp)}return out}
+// question builders
+function qComplete(s,a,hideFrac){const w=words(verse(s,a));const n=Math.max(1,Math.min(w.length-1,Math.round(w.length*(1-hideFrac))));return{s,a,kind:'complete',title:'أكمل الآية',prompt:w.slice(0,n).join(' ')+' …',answer:w.join(' '),ref:ref(s,a)}}
+function qNext(s,a){const ns=texts[riwaya][s];if(!ns||a>=ns.length)return qComplete(s,a,.5);return{s,a,kind:'next',title:'ما الآية التي بعدها؟',prompt:verse(s,a),answer:verse(s,a+1),ref:'بعد '+ref(s,a),mark:[s,a]}}
+function qWhere(s,a){return{s,a,kind:'where',title:'من أي سورة هذه الآية؟',prompt:verse(s,a),answer:SURA[s-1]+' - الآية '+a,ref:''}}
+function qPage(p){const pg=PAGES_FOR().find(x=>(x[2]||0)==p)||PAGES_FOR()[p-1];const [s,a]=pg;const w=words(verse(s,a));return{s,a,kind:'page',title:'أكمل: بداية صفحة '+p,prompt:w.slice(0,Math.min(3,w.length-1)).join(' ')+' …',answer:w.join(' ')+'\n('+ref(s,a)+')',ref:'صفحة '+p}}
+function qSimilar(group,target){const [s,a]=target;const w=words(verse(s,a));const cut=Math.max(2,Math.ceil(w.length/2));
+ let opts=[];const seen=new Set();for(const o of shuffle(group)){const ow=words(verse(o[0],o[1]));const t=ow.slice(cut>=ow.length?ow.length-1:cut).join(' ');if(seen.has(t))continue;seen.add(t);opts.push({t,ok:o[0]==s&&o[1]==a,ref:ref(o[0],o[1])})}
+ if(!opts.some(o=>o.ok)){opts.pop();opts.push({t:w.slice(cut).join(' '),ok:true,ref:ref(s,a)})}
+ opts=shuffle(opts).slice(0,4);if(!opts.some(o=>o.ok))opts[0]={t:w.slice(cut).join(' '),ok:true,ref:ref(s,a)};
+ return{s,a,kind:'mc',title:'متشابه: اختر الإتمام الصحيح',prompt:w.slice(0,cut).join(' ')+' …',options:opts,answer:verse(s,a)+'\n('+ref(s,a)+')',ref:ref(s,a)}}
+const ref=(s,a)=>'سورة '+SURA[s-1]+' - الآية '+a;
+function pageStartsInMem(vs){const set=new Set(vs.map(v=>key(...v)));const out=[];PAGES_FOR().forEach(([s,a,p],i)=>{if(set.has(key(s,a)))out.push(p||i+1)});return out}
+// session
+let S=null;
+function start(qs,label){if(!qs.length){M.innerHTML='<div class="box">ما لقيناش أسئلة كافية. زيد حدد المحفوظ في الإعدادات (الأسفل) ثم عاود.</div><button class="ghost" onclick="home()">رجوع</button>';return}
+ S={qs,i:0,ok:0,label,done:false};show()}
+function show(){const q=S.qs[S.i];const pct=Math.round(S.i/S.qs.length*100);
+ let h=`<div class="hint">${S.label} · سؤال ${S.i+1} من ${S.qs.length}</div><div class="bar"><i style="width:${pct}%"></i></div><h2>${q.title}</h2><div class="q">${q.prompt}</div>`;
+ if(q.kind==='mc'){q.options.forEach((o,i)=>h+=`<button class="opt" onclick="choose(${i})">${o.t}</button>`);h+='<div id="r"></div>'}
+ else h+='<div id="r"><button class="primary" onclick="reveal()">أظهر الجواب</button></div>';
+ M.innerHTML=h}
+function reveal(){const q=S.qs[S.i];document.getElementById('r').innerHTML=`<div class="ans">${q.answer.replace(/\n/g,'<br>')}</div><div class="hint">${q.ref}</div><p>هل جاوبت صح؟</p><button class="primary" onclick="grade(true)">أصبت</button> <button class="bad" onclick="grade(false)">أخطأت</button>`}
+function choose(i){const q=S.qs[S.i];const bs=[...document.querySelectorAll('.opt')];bs.forEach((b,j)=>{b.disabled=true;if(q.options[j].ok)b.classList.add('right');else if(j==i)b.classList.add('wrong');b.innerHTML+=`<div class="hint">${q.options[j].ref||''}</div>`});document.getElementById('r').innerHTML=`<div class="hint">${q.ref}</div><button class="primary" onclick="grade(${q.options[i].ok},true)">التالي</button>`}
+function grade(ok){const q=S.qs[S.i];record(q.s,q.a,ok);if(ok)S.ok++;S.i++;S.i>=S.qs.length?finish():show()}
+function finish(){const n=S.qs.length;M.innerHTML=`<h2>النتيجة</h2><div class="box"><div style="font-size:40px;color:var(--g)">${S.ok} / ${n}</div><div class="bar"><i style="width:${S.ok/n*100}%"></i></div><p>${S.ok==n?'ما شاء الله، كل الأجوبة صح.':'الآيات اللي أخطأت فيها تلقاها في «أخطائي».'}</p></div><button class="primary" onclick="home()">الاختبارات</button>`}
+// modes
+function mixed(vs,n,opts={}){const types=opts.types||['complete','next','where'];const st=stats();const w=vs.map(v=>[v,1+(st[key(...v)]?.bad||0)*2]);const qs=[];
+ for(let i=0;i<n&&w.length;i++){let t=w.reduce((a,b)=>a+b[1],0),r=Math.random()*t,v=w[0][0];for(const x of w){r-=x[1];if(r<=0){v=x[0];break}}
+  const ty=pick(types);const [s,a]=v;qs.push(ty=='next'?qNext(s,a):ty=='where'?qWhere(s,a):qComplete(s,a,opts.hide??.5))}return qs}
+function needMem(){if(memVerses().length)return false;M.innerHTML='<div class="box">حدد أولا المحفوظ متاعك باش تتولد الأسئلة منو.</div><button class="primary" onclick="settings()">تحديد المحفوظ</button> <button class="ghost" onclick="home()">رجوع</button>';return true}
+function today(){if(needMem())return;start(mixed(memVerses(),10),'اختبار اليوم')}
+function random(){if(needMem())return;start(mixed(shuffle(memVerses()).slice(0,60),10),'اختبار عشوائي')}
+function pagesMode(){if(needMem())return;const ps=pageStartsInMem(memVerses());if(!ps.length){M.innerHTML='<div class="box">ما فماش بداية صفحة داخل المحفوظ المحدد. وسّع المحفوظ (مثلا سورة كاملة).</div><button class="ghost" onclick="home()">رجوع</button>';return}
+ start(shuffle(ps).slice(0,10).map(qPage),'بدايات الصفحات')}
+function similarMode(){if(needMem())return;const vs=memVerses(),gs=simGroupsFor(vs);const qs=[];for(const g of shuffle(gs)){const inMem=g.filter(v=>vs.some(m=>key(...m)==key(...v)));if(!inMem.length)continue;qs.push(qSimilar(g,pick(inMem)));if(qs.length>=10)break}
+ if(!qs.length){M.innerHTML='<div class="box">ما لقيناش آيات متشابهة داخل المحفوظ المحدد.</div><button class="ghost" onclick="home()">رجوع</button>';return}start(qs,'المتشابهات')}
+function mistakes(){const vs=mistakeVerses();if(!vs.length){M.innerHTML='<div class="box">ما عندكش أخطاء مسجلة حاليا. الآيات اللي تخطئ فيها في الاختبارات تتجمع هنا. وبعد تفعيل التسميع تتجمع الكلمات المعلّمة كذلك.</div><button class="ghost" onclick="home()">رجوع</button>';return}
+ start(shuffle(vs).slice(0,15).map(([s,a])=>qComplete(s,a,.4)),'أخطائي')}
+function custom(){M.innerHTML=`<h2>اختبار مخصص</h2><div class="box">
+<label>النوع <select id="ct"><option value="complete">إكمال الآية</option><option value="next">الآية التي بعدها</option><option value="where">من أي سورة</option><option value="page">بدايات الصفحات</option><option value="similar">المتشابهات</option></select></label><br>
+<label>الصعوبة <select id="cd"><option value=".7">سهل (نعطيك أغلب الآية)</option><option value=".5" selected>متوسط</option><option value=".25">صعب (كلمات قليلة فقط)</option></select></label><br>
+<label>السورة <select id="cs"><option value="0">كل المحفوظ</option>${SURA.map((n,i)=>`<option value="${i+1}">${n}</option>`).join('')}</select></label><br>
+<label>عدد الأسئلة <input id="cn" type="number" min="3" max="30" value="10" style="width:70px"></label></div>
+<button class="primary" onclick="runCustom()">ابدأ</button> <button class="ghost" onclick="home()">رجوع</button>`}
+function runCustom(){const t=document.getElementById('ct').value,hide=1-parseFloat(document.getElementById('cd').value),sid=+document.getElementById('cs').value,n=+document.getElementById('cn').value||10;
+ let vs=sid?texts[riwaya][sid].map((_,i)=>[sid,i+1]):memVerses();if(!vs.length){needMem();return}
+ if(t=='page'){let ps=pageStartsInMem(vs);if(!ps.length){start([],'');return}return start(shuffle(ps).slice(0,n).map(qPage),'اختبار مخصص')}
+ if(t=='similar'){const gs=simGroupsFor(vs),qs=[];for(const g of shuffle(gs)){const im=g.filter(v=>vs.some(m=>key(...m)==key(...v)));if(im.length)qs.push(qSimilar(g,pick(im)));if(qs.length>=n)break}return start(qs,'اختبار مخصص')}
+ start(mixed(vs,n,{types:[t],hide:1-hide}),'اختبار مخصص')}
+function settings(){const cur=mem();M.innerHTML=`<h2>المحفوظ متاعي</h2><div class="box"><label>الرواية <select id="rw"><option value="haf" ${riwaya=='haf'?'selected':''}>حفص</option><option value="qal" ${riwaya=='qal'?'selected':''}>قالون</option></select></label><p class="hint">الأسئلة تتولد من الآيات اللي تحددها هنا فقط. تقدر تزيد أكثر من سورة.</p><div id="rows"></div>
+<button class="ghost" onclick="addRow()">+ سورة</button></div><button class="primary" onclick="saveMem()">حفظ</button> <button class="ghost" onclick="home()">رجوع</button>`;
+ (cur.length?cur:[{s:1,from:1,to:7}]).forEach(r=>addRow(r))}
+function addRow(r){r=r||{s:1,from:1,to:7};const d=document.createElement('div');d.className='row';d.innerHTML=`<select class="rs">${SURA.map((n,i)=>`<option value="${i+1}" ${r.s==i+1?'selected':''}>${n}</option>`).join('')}</select> من <input class="rf" type="number" min="1" value="${r.from}" style="width:60px"> إلى <input class="rt" type="number" min="1" value="${r.to}" style="width:60px"> <button class="ghost" onclick="this.parentNode.remove()">×</button>`;document.getElementById('rows').appendChild(d)}
+async function saveMem(){riwaya=document.getElementById('rw').value;LS.set('anisi_riw',riwaya);const out=[];document.querySelectorAll('.row').forEach(d=>{const s=+d.querySelector('.rs').value,max=texts[riwaya][s].length;let f=Math.max(1,+d.querySelector('.rf').value||1),t=Math.min(max,+d.querySelector('.rt').value||max);if(f<=t)out.push({s,from:f,to:t})});LS.set('anisi_mem',out);await loadExtra();home()}
+function home(){S=null;const nm=memVerses().length,ms=mistakeVerses().length;
+ const card=(c,i,t,s,f)=>`<button class="card" onclick="${f}()"><div class="ic ${c}">${i}</div><div><b>${t}</b><span class="s">${s}</span></div><span class="ch">‹</span></button>`;
+ M.innerHTML=`<div class="hint">الرواية: ${riwaya=='haf'?'حفص':'قالون'} · المحفوظ: ${nm} آية <a href="#" onclick="settings();return false" style="color:var(--g)">(تعديل)</a></div>
+<h2>مراجعة</h2>${card('c1','↻','أخطائي','تُجمع من تسميعك واختباراتك'+(ms?' ('+ms+')':''),'mistakes')}
+<h2>اختبار من متعدد</h2>
+${card('c2','▦','اختبار اليوم','أسئلة من محفوظك، يختارها التطبيق حسب حاجتك للمراجعة','today')}
+${card('c3','▤','بدايات الصفحات','كما يختبر المعلّم','pagesMode')}
+${card('c3','⇄','المتشابهات','آيات متشابهة تختلط في الحفظ، من قائمة معتمدة','similarMode')}
+${card('c1','⤮','اختبار عشوائي','من كل محفوظك','random')}
+${card('c4','⚙','اختبار مخصص','النوع والصعوبة والموضع','custom')}`}
+(async()=>{try{for(const r of['qal','haf'])texts[r]=await (await fetch({qal:'5-qal.json',haf:'6-haf.json'}[r])).json();await loadExtra();home()}catch(e){M.textContent='تعذر تحميل النصوص: '+e}})();
+</script></body></html>
