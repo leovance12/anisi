@@ -3,7 +3,7 @@ import {logprobs,greedy,words,align} from './core.js';
 ort.env.wasm.wasmPaths={mjs:new URL('./9-ort-wasm-simd-threaded.mjs',import.meta.url).href,wasm:new URL('./10-ort-wasm-simd-threaded.wasm',import.meta.url).href};ort.env.wasm.numThreads=1;
 const $=id=>document.getElementById(id);
 const HI=0.99,LO=0.25,WINDOW=30; // thresholds tuned on Husary Qalun, see report
-let sess,texts={},W=[],VS=[],cursor=0,state=[],ctx,stream,proc,listening=false;
+let sess,texts={},W=[],VS=[],FV=0,MS=new Set(),cursor=0,state=[],ctx,stream,proc,listening=false;
 const NAMES=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
 NAMES.forEach((n,i)=>{const o=document.createElement('option');o.value=i+1;o.textContent=(i+1)+' - '+n;$('sura').appendChild(o);});
 $('sura').value=105;
@@ -14,7 +14,7 @@ async function init(){const parts=[];for(const n of ['7-model.part00','8-model.p
  sess=await ort.InferenceSession.create(model,{executionProviders:['wasm']});
  for(const r of['qal','haf'])texts[r]=await (await fetch({qal:'5-qal.json',haf:'6-haf.json'}[r])).json();setStatus('جاهز. اختر السورة ثم اضغط ابدأ.');load();}
 function load(){const r=$('riwaya').value,s=$('sura').value,ay=texts[r][s];const f=Math.max(1,+$('from').value)-1,t=Math.min(ay.length,+$('to').value);
- W=[];VS=[];ay.slice(f,t).forEach(a=>{VS.push(W.length);W.push(...words(a));});state=W.map(()=>'hidden');cursor=0;render();}
+ FV=f;MS=new Set();W=[];VS=[];ay.slice(f,t).forEach(a=>{VS.push(W.length);W.push(...words(a));});state=W.map(()=>'hidden');cursor=0;render();}
 function render(st){st=st||state;const box=$('text');box.innerHTML='';W.forEach((w,i)=>{const s=document.createElement('span');s.className='w '+st[i];s.textContent=st[i]==='hidden'?w.raw:(st[i]==='repeat'?w.raw+' ؟':w.raw);s.onclick=()=>openVerdict(i);box.appendChild(s);});}
 let chain=Promise.resolve(),uid=0;const q=f=>(chain=chain.then(f,f));
 function bestStart(hyp){const cands=new Set([cursor]);let v=0;for(let k=0;k<VS.length;k++)if(VS[k]<=cursor)v=k;cands.add(VS[v]);if(v>0)cands.add(VS[v-1]);
@@ -23,9 +23,10 @@ function bestStart(hyp){const cands=new Set([cursor]);let v=0;for(let k=0;k<VS.l
 function commit(hyp){const b=bestStart(hyp);if(!b)return;let firstRepeat=-1,lastCovered=-1;
  b.res.forEach((r,k)=>{if(r.state==='pending')return;lastCovered=k;const i=b.s+k;
   if(r.state==='ok')state[i]='ok';else if(state[i]==='ok'){/* keep earlier ok after a restart */}
-  else if(r.state==='repeat'){state[i]='repeat';if(firstRepeat<0)firstRepeat=k;}else{state[i]='mark';if($('vib').checked&&navigator.vibrate)navigator.vibrate(120);}});
+  else if(r.state==='repeat'){state[i]='repeat';if(firstRepeat<0)firstRepeat=k;}else{state[i]='mark';logMiss(i);if($('vib').checked&&navigator.vibrate)navigator.vibrate(120);}});
  if(lastCovered>=0)cursor=b.s+(firstRepeat>=0?firstRepeat:lastCovered+1);
  render();setStatus(firstRepeat>=0?'لم أتأكد من بعض الكلمات: أعد قراءتها.':'تمام. تابع.');}
+function logMiss(i){let j=0;for(let k=0;k<VS.length;k++)if(VS[k]<=i)j=k;const key=$('sura').value+':'+(FV+1+j);if(MS.has(key))return;MS.add(key);try{const m=JSON.parse(localStorage.getItem('anisi_mistakes')||'{}');m[key]=(m[key]||0)+1;localStorage.setItem('anisi_mistakes',JSON.stringify(m));}catch(e){}}
 function preview(hyp){const b=bestStart(hyp);if(!b)return;const tmp=state.slice();for(let k=0;k<b.res.length;k++){if(b.res[k].state!=='ok')break;tmp[b.s+k]='ok';}render(tmp);}
 // final: whole utterance (after a pause)
 async function handle(wave){return q(async()=>{const {lp,T}=await logprobs(ort,sess,wave);const hyp=greedy(lp,T).text;commit(hyp);window.__lastHyp=hyp;});}
